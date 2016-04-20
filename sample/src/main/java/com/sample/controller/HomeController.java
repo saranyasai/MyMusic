@@ -81,34 +81,62 @@ public String m11()
 {
 	return "content";
 }
+
 @RequestMapping("/content1")
 public @ResponseBody String disp() throws Exception 
 {
-	/*ProductDao ud=new ProductDao();
-	ud.setData();
-	ArrayList<Product>li=ud.getData();
+//ProductDao ud=new ProductDao();
+	//ud.setData();
+	//ArrayList<Product>li=ud.getData();
 
-	ModelAndView mv=new ModelAndView("content");
-	mv.addObject("listUsers",li);
-	return mv;*/
+	//ModelAndView mv=new ModelAndView("content");
+	//mv.addObject("listUsers",li);
+	//return mv;
 //	arg0.setAttribute("ss",mv);
 //	return ;
 	ProductDao ud=new ProductDao();
-	ud.setData();
-	ArrayList<Product>li=ud.getData();
+//	ud.setData();
+	//ArrayList<Product>li=ud.getData();
 	 Gson gson = new Gson();
 	 ud.setData();
-	    String json = gson.toJson(ud.getData());
+ String json = gson.toJson(ud.getData());
 return json;
 
 }
 
-@RequestMapping("/addtocart")
-public ModelAndView addtocart()
+@RequestMapping("/moreinfo")
+public ModelAndView addtocart(HttpServletRequest request,HttpServletResponse response)
 {
-	return new ModelAndView("addtocart");
+	//ModelAndView mv;
+	String data=request.getParameter("id");
+	ProductDao ud=new ProductDao();
+	ud.setData();
+	ArrayList<Product>li=ud.getData();
+	for(Product li1:li)
+	{
+		li1.getId();
+	if(li1.getId().equals(data))
+	{
+		ModelAndView mv1=new ModelAndView("moreinfo");
+		li1.getName();
+		li1.getCost();
+		li1.getDesc();
+		mv1.addObject("ss",li1);
+		//request.setAttribute("ss",li);
+		return mv1;
+	}
+	
+			
+	//return mv;
 }
+	return new ModelAndView("Check");
 
+}
+@RequestMapping("/AddToCart")
+public ModelAndView addtoCart()
+{
+	return new ModelAndView("AddToCart");
+}
 }
 
 

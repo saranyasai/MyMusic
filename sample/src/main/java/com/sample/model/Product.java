@@ -1,7 +1,13 @@
 package com.sample.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
-	private String id,name,cost,desc;
+	@Id
+	private String id;
+	private String name,cost,desc;
 
 	public String getId() {
 		return id;

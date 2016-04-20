@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="header.jsp" %>
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
@@ -23,57 +24,46 @@
 </head>
 <body>
 
-<div class="container">
-  <br>
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-  <ul class="nav navbar-nav navbar-right">
-      <li><a href="index"><span class="glyphicon glyphicon-user"></span>Login</a></li>
-      <li><a href="login"><span class="glyphicon glyphicon-log-in"></span>Register</a></li>
-      <li><a href="About">About Us</a>
-    </ul>
-  </div>
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      
-    </ol>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+  <!--   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        
-        <img src="<c:url value='/resources/images/music5.jpg'/>" height="200" width="300"/>
-      </div>
-
-      <div class="item">
-        
-         <img src="<c:url value='/resources/images/music2.jpg'/>" height="200" width="300"/>
-      </div>
-    
-      <div class="item">
-       
-         <img src="<c:url value='/resources/images/music3.jpg'/>" height="200" width="300"/>
-      </div>
-
-      
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <!-- <div class="item active">
+      <img src="<c:url value='/resources/images/music5.jpg'/>" alt="Chania" height="200%" width="300%">
+    </div>
+-->
+    <div class="item active">
+      <img src="<c:url value='/resources/images/music2.jpg'/>" alt="Chania">
     </div>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="item">
+      <img src="<c:url value='/resources/images/music3.jpg'/>" alt="Flower">
+    </div>
+
+    <div class="item">
+      <img src="<c:url value='/resources/images/music3.jpg'/>" alt="Flower">
+    </div>
   </div>
- 
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+
+ 
  <center><h1 style="color:red">Enjoy the Rhythm of Music</h1></center>
  <form method="post"></form>
 <div class="table-responsive">
@@ -87,7 +77,11 @@
  </div>
  <h1><a href="content?dd=img4">All Products</a></h1>
  </center>
-</div>
 </form>
+</div>
+<br>
+<br>
+<hr>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

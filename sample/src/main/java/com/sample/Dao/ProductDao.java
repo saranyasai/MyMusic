@@ -11,17 +11,18 @@ public class ProductDao {
 	{
 		Product u=new Product();
 		u.setId("1");
-		u.setName("saran");
+		u.setName("guitar");
 		u.setDesc("simple");
 		u.setCost("1000");
 
 		Product u1=new Product();
 		u1.setId("2");
-		u1.setName("shaju");
+		u1.setName("veena");
 		u1.setDesc("simple");
 		u1.setCost("2000");
-		li.add(u1);
-li.add(u);		
+		
+li.add(u);
+li.add(u1);
 	}
 	
 public ArrayList<Product> getData()
