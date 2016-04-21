@@ -36,6 +36,19 @@ private SessionFactory sf;
 		s.close();
 		
 	}
+	public void update(User u)
+	{
+		Session s=sf.getCurrentSession();
+		s.update(u);
+		s.flush();
+		
+	}
+	public void delete(User u)
+	{
+		Session s=sf.getCurrentSession();
+		s.delete(u);
+		s.flush();
+	}
 	
 /*	ArrayList<Product>li=new ArrayList<Product>();
 	public void setData()

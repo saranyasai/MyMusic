@@ -80,6 +80,20 @@ ps.insert(user);
 return "Register";
 }
 
+@RequestMapping(value="/register",params="edit",method=RequestMethod.POST)
+public String doEdit(@ModelAttribute("user") User user)
+{
+ps.update(user);
+System.out.println(user.getNumber());
+return "Register";
+}
+@RequestMapping(value="/register",params="delete",method=RequestMethod.POST)
+public String doDelete(@ModelAttribute("user") User user)
+{
+ps.delete(user);
+System.out.println(user.getNumber());
+return "Register";
+}
 
 
 

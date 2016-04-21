@@ -19,4 +19,12 @@ public void insert(User u)
 {
 pd.insert(u);	
 }
+public void update(User u)
+{
+pd.update(u);	
+}
+public void delete(User u)
+{
+pd.delete(u);
+}
 }

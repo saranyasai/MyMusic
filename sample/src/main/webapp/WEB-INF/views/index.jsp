@@ -88,12 +88,16 @@
 
 </div>
 <div class="form-group">
-<label for="name" class="col-sm-2 control-label"> Name:</label>
 <div class="col-sm-2">
-<input type="submit" value="save" class="btn btn-primary"/>
-
+<input type="submit" name="add" value="SIGNUP" class="btn btn-success pull-right"/>
 </div>
-
+<div class="col-sm-2">
+<input type="submit" name="edit"  value="UPDATE" class="btn btn-primary pull-right"/>
+</div>
+<div class="col-sm-2">
+<input type="submit" name="delete"  value="DELETE" class="btn btn-danger pull-right"/>
+</div>
+ ​
 </div>
 
 </form:form>
