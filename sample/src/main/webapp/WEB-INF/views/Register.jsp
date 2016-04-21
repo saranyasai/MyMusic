@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<H1>Website is under progress SOON You can Enjoy Rhythm of Music :-)</H1>
+
 </body>
 </html>

@@ -17,6 +17,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 <tx:annotation-driven/>
 <mvc:resources mapping="/resources/**" location="/resources/"/>
 <mvc:default-servlet-handler/>
+ <bean id="pd" class="com.sample.Dao.ProductDao"/>
+ <bean id="ps" class="com.sample.Dao.ProductService"/>
  
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
