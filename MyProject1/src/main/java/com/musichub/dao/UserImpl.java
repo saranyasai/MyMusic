@@ -31,7 +31,13 @@ public class UserImpl implements UserInter {
 			
 			s.flush();
 		}
-		
+	/*	public void check(User3 u) {
+			// TODO Auto-generated method stub
+			Session s=sessionFactory.getCurrentSession();
+			s.createCriteria(User3.class);
+			
+		}
+		*/
 		
 
 }
