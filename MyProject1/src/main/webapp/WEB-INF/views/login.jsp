@@ -59,12 +59,12 @@
  </head>
 
 <body>
-
-<form:form commandName="user1" cssClass="form-horizontal" action="Logged">
+<!--  
+<form:form commandName="user1" cssClass="form-horizontal" action="<c:url value='/j_spring_security_check'/>">
 <div class="form-group">
 <label for="name" class="col-sm-2 control-label" > Name:</label>
 <div class="col-sm-10">
-<form:input path="name" cssClass="form-control"/>
+<form:input path="username" cssClass="form-control" id="name" name="username"/>
 
 </div>
  
@@ -72,22 +72,40 @@
 <div class="form-group">
 <label for="name" class="col-sm-2 control-label"> Password:</label>
 <div class="col-sm-10">
-<form:password path="password" cssClass="form-control"/>
+<form:password path="password" cssClass="form-control" id="password" name="password"/>
 
 </div>
 
 </div>
+<input type="hidden" 
+                     name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 <div class="form-group">
-<label for="name" class="col-sm-2 control-label"> Name:</label>
+
 <div class="col-sm-2">
 <input type="submit" value="login" class="btn btn-primary"/>
 
 </div>
 
 </div>
+</form:form> -->
+<form name="loginForm" action="<c:url value="/j_spring_security_check" />" method="post">
+               <c:if test="${not empty error}">
+                   <div class="error" style="color: #ff0000 ;">${error}</div>
+               </c:if>
+               <div class="form-group">
+                   <label for="username">User: </label>
+                   <input type="text" id="username" name="username" class="form-control" />
+               </div>
+               <div class="form-group">
+                   <label for="password">Password:</label>
+                   <input type="password" id="password" name="password" class="form-control" />
+               </div>
 
-</form:form>
+               <input type="submit" value="Submit" class="btn btn-default">
+
+               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+           </form>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

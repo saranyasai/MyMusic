@@ -30,16 +30,38 @@
    <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <beans:property name="sessionFactory" ref="sessionFactory" />
     </beans:bean>
-   <security:http>
-   <security:intercept-url pattern="/**"/>
-   <security:form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?Error"/>
-<security:logout logout-success-url="/login?logout"/>
-</security:http>
+   <security:http auto-config="true">
+      <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+       <security:form-login
+           login-page="/login"
+           default-target-url="/"
+           login-processing-url="/j_spring_security_check"
+           authentication-failure-url="/login?error"
+           username-parameter="username"
+           password-parameter="password" />
+       <security:logout
+           logout-success-url="/login?logout" />
+   </security:http>
+
+<!-- security:authentication-manager>
+<security:authentication-provider>
+   <security:jdbc-user-service data-source-ref="dataSource"
+users-by-username-query="select username,password from user3 where username='baba'"
+authorities-by-username-query="select u1.username, u2.role_name from user3 u1, userroles u2 where u1.username=u2.username and u1.username='baba'"/>
+</security:authentication-provider>-->
+
 <security:authentication-manager>
 <security:authentication-provider>
-<security:user-service>
-<security:user name="admin"  password="admin"  authorities="ROLE_ADMIN"/>
-</security:user-service>
+<security:jdbc-user-service data-source-ref="dataSource"
+users-by-username-query="select username,password,enabled from user_authentication where username=?"
+authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" />
 </security:authentication-provider>
 </security:authentication-manager>
+<!--    <security:authentication-manager> -->
+<!--        <security:authentication-provider> -->
+<!--         <security:jdbc-user-service data-source-ref="dataSource" -->
+<!--                                       authorities-by-username-query="SELECT username,role_name From USERROLES WHERE username = ?" -->
+<!--                                         users-by-username-query="SELECT us.username,ur.role_name,us.password FROM USER3 us,USERROLES ur WHERE us.username = ?" /> -->
+<!--        </security:authentication-provider> -->
+<!--    </security:authentication-manager> -->
 </beans:beans>

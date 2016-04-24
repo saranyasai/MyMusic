@@ -27,7 +27,7 @@
 <div class="form-group">
 <h2><label for="name" class="col-sm-2 control-label"> Name:</label></h2>
 <div class="col-sm-10">
-<h1><form:input path="name" cssClass="form-control"/></h1>
+<h1><form:input path="username" cssClass="form-control"/></h1>
 </div>
  </div>
 <div class="form-group">
@@ -39,7 +39,7 @@
 <div class="form-group">
 <h2><label for="number" class="col-sm-2 control-label"> Number:</label></h2>
 <div class="col-sm-10">
-<h1><form:input path="number" cssClass="form-control"/></h1>
+<h1><form:input path="num" cssClass="form-control"/></h1>
 </div>
 </div>
 <center>
