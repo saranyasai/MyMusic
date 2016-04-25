@@ -1,5 +1,6 @@
+<%@page import="com.musichub.model.ProductInfo"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.musichub.model.Product3" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -65,7 +66,7 @@ left: 200%;
 
                            
 <center>
-<img src="<c:url value='/resources/images/music.jpg'/>" height="200" width="300" id="ig"/>
+<img src="<c:url value='/resources/images/music6.jpg'/>" height="200" width="300" id="ig"/>
 </center>
 <br>
 <br>
@@ -84,6 +85,7 @@ left: 200%;
 <%String img1=request.getParameter("dd") ;
 if(img1.equals("img1"))
 {
+	out.println(""+img1);
 %>
 <div>
         <div  ng-init="getPersonDataFromServer(); ">
@@ -98,17 +100,22 @@ if(img1.equals("img1"))
 <th style="font-size: 200%;">pname</th>
 <th style="font-size: 200%;">cost</th>
 <th style="font-size: 200%;">description</th>
+<th style="font-size: 200%;">manufcture</th>
 </tr>
 </thead>
 <tbody>
-	<tr ng-repeat="c in person |filter: bname">
-	<td style="font-size: 200%;">{{c.id}}</td>
-			<td style="font-size: 200%;">{{c.name}}</td>
-		<td style="font-size: 200%;">{{c.cost}}</td>
-			<td style="font-size: 200%;">{{c.desc}}</td>
+	<tr ng-repeat="c in person|filter: bname">
+	
+			<td style="font-size: 200%;">{{c.id}}</td>
+		<td style="font-size: 200%;">{{c.pname}}</td>
+			<td style="font-size: 200%;">{{c.pprice}}</td>
+			<th style="font-size: 200%;">{{c.pdesc}}</th>
+			<td style="font-size:200%;">{{c.pmanu}}</td>
 			<td style="font-size: 200%;"><a href="moreinfo?id={{c.id}}">
+			
    	   <span class="glyphicon glyphicon-info-sign"></span>
-        </a></td>
+        </td>
+         <td style="font-size:200%;"><a href="AddToCart?id={{c.pname}}" class="btn btn-info" role="button">Add To Cart</a></td>
 	</tr>
 </tbody>
 </table>
@@ -132,15 +139,19 @@ else if(img1.equals("img2"))
 <th style="font-size: 200%;">pname</th>
 <th style="font-size: 200%;">cost</th>
 <th style="font-size: 200%;">description</th>
+<th style="font-size: 200%;">manufcture</th>
 </tr>
 </thead>
 <tbody>
-	<tr ng-repeat="c in person |filter: bname">
-	<td style="font-size: 200%;">{{c.id}}</td>
-			<td style="font-size: 200%;">{{c.name}}</td>
-		<td style="font-size: 200%;">{{c.cost}}</td>
-			<td style="font-size: 200%;">{{c.desc}}</td>
+	<tr ng-repeat="c in person|filter: bname">
+	
+			<td style="font-size: 200%;">{{c.id}}</td>
+		<td style="font-size: 200%;">{{c.pname}}</td>
+			<td style="font-size: 200%;">{{c.pprice}}</td>
+			<th style="font-size: 200%;">{{c.pdesc}}</th>
+			<td style="font-size:200%;">{{c.pmanu}}</td>
 			<td style="font-size: 200%;"><a href="moreinfo?id={{c.id}}">
+			
    	   <span class="glyphicon glyphicon-info-sign"></span>
         </a></td>
 	</tr>
@@ -153,45 +164,8 @@ else if(img1.equals("img2"))
 <%
 }
 
-else if(img1.equals("img3"))
-{
-%>
-<div>
-        <div ng-init="getPersonDataFromServer();">
-           <!--  <button data-ng-click="getPersonDataFromServer()">Get Person data from server</button>-->
-            
-
-<div class="table-responsive">
-<table class="display table" width="100%">
-<thead>
-<tr>
-<th style="font-size: 200%;">pid</th>
-<th style="font-size: 200%;">pname</th>
-<th style="font-size: 200%;">cost</th>
-<th style="font-size: 200%;">description</th>
-</tr>
-</thead>
-<tbody>
-	<tr ng-repeat="c in person |filter: bname">
-	<td style="font-size: 200%;">{{c.id}}</td>
-			<td style="font-size: 200%;">{{c.name}}</td>
-		<td style="font-size: 200%;">{{c.cost}}</td>
-			<td style="font-size: 200%;">{{c.desc}}</td>
-			<td style="font-size: 200%;"><a href="moreinfo?id={{c.id}}">
-   	   <span class="glyphicon glyphicon-info-sign"></span>
-        </a></td>
-	</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-<%
-}
 else
 {
-
 %>
 <div>
         <div ng-init="getPersonDataFromServer();">
@@ -200,31 +174,38 @@ else
 
 <div class="table-responsive">
 <table class="display table" width="100%">
-<table class="display table" width="100%">
 <thead>
 <tr>
 <th style="font-size: 200%;">pid</th>
 <th style="font-size: 200%;">pname</th>
 <th style="font-size: 200%;">cost</th>
 <th style="font-size: 200%;">description</th>
+<th style="font-size: 200%;">manufcture</th>
 </tr>
 </thead>
 <tbody>
-	<tr ng-repeat="c in person |filter: bname">
-	<td style="font-size: 200%;">{{c.id}}</td>
-			<td style="font-size: 200%;">{{c.name}}</td>
-		<td style="font-size: 200%;">{{c.cost}}</td>
-			<td style="font-size: 200%;">{{c.desc}}</td>
+	<tr ng-repeat="c in person|filter: bname">
+	
+			<td style="font-size: 200%;">{{c.id}}</td>
+		<td style="font-size: 200%;">{{c.pname}}</td>
+			<td style="font-size: 200%;">{{c.pprice}}</td>
+			<th style="font-size: 200%;">{{c.pdesc}}</th>
+			<td style="font-size:200%;">{{c.pmanu}}</td>
 			<td style="font-size: 200%;"><a href="moreinfo?id={{c.id}}">
+			
    	   <span class="glyphicon glyphicon-info-sign"></span>
         </a></td>
 	</tr>
 </tbody>
 </table>
-</div>
+
 </div>
 </div>
 <%} %>
+</div>
+
+
+
 
 <ul class="list-group">
 <li><h1><a href="viewcart.jsp">View Cart</a></h1></li>

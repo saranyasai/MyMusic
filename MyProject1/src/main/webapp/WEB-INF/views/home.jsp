@@ -63,7 +63,7 @@
 
  
  <center><h1 style="color:red">Enjoy the Rhythm of Music</h1></center>
- <form method="post"></form>
+ <form method="post">
 <div class="table-responsive">
 <center>
 <div class="table">
@@ -73,10 +73,10 @@
  
  <a href="content?dd=img3"><img src="<c:url value='/resources/images/music9.jpg'/>" height="200" width="300"/></a>
  </div>
- <h1><a href="content?dd=img4">All Products</a></h1>
+ <h1><a href="AllProduct">All Products</a></h1>
  </center>
+ </div>
 </form>
-</div>
 <br>
 <br>
 <hr>

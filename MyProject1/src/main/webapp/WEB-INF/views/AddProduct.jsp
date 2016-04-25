@@ -10,6 +10,9 @@
 <body>
 <form:form commandName="product" cssClass="form-horizontal" action="AddProduct" method="post" enctype="multipart/form-data">
 <div class="form-group">
+<form:errors path="*" cssStyle="color:red;"/>
+</div>
+<div class="form-group">
 <h2><label for="name" class="col-sm-2 control-label"> ProductName:</label></h2>
 <div class="col-sm-10">
 <h1><form:input path="pname" cssClass="form-control"/></h1>

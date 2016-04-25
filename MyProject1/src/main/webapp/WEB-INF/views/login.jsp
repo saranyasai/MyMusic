@@ -47,48 +47,14 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
- </head>
-
+ <link href="<c:url value="/resources/bootstrap-3.3.6-dist/css/bootstrap.min.css"/>" rel="stylesheet">
+<script src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
+</head>
 <body>
-<!--  
-<form:form commandName="user1" cssClass="form-horizontal" action="<c:url value='/j_spring_security_check'/>">
-<div class="form-group">
-<label for="name" class="col-sm-2 control-label" > Name:</label>
-<div class="col-sm-10">
-<form:input path="username" cssClass="form-control" id="name" name="username"/>
-
-</div>
- 
-</div>
-<div class="form-group">
-<label for="name" class="col-sm-2 control-label"> Password:</label>
-<div class="col-sm-10">
-<form:password path="password" cssClass="form-control" id="password" name="password"/>
-
-</div>
-
-</div>
-<input type="hidden" 
-                     name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-<div class="form-group">
-
-<div class="col-sm-2">
-<input type="submit" value="login" class="btn btn-primary"/>
-
-</div>
-
-</div>
-</form:form> -->
+<div class="container">
 <form name="loginForm" action="<c:url value="/j_spring_security_check" />" method="post">
                <c:if test="${not empty error}">
                    <div class="error" style="color: #ff0000 ;">${error}</div>
@@ -102,10 +68,11 @@
                    <input type="password" id="password" name="password" class="form-control" />
                </div>
 
-               <input type="submit" value="Submit" class="btn btn-default">
+               <input type="submit" value="Submit" class="btn btn-default"/>
 
                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
            </form>
+           </div>
 <jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

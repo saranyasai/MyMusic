@@ -12,7 +12,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 <mvc:default-servlet-handler/>
 <bean id="us" class="com.musichub.dao.UserService"/>
 <bean id="up" class="com.musichub.dao.UserImpl"/>
-
+<bean id="ps" class="com.musichub.dao.ProdService"/>
+<bean id="pi" class="com.musichub.dao.ProdImpl"/>
 <bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		</bean>

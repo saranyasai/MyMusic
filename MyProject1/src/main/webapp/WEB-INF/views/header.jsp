@@ -19,7 +19,7 @@
       <li><a href="index"><span class="glyphicon glyphicon-log-in"></span>Register</a></li>
       <li><a href="login"><span class="glyphicon glyphicon-user"></span>Login</a></li>
       <li><a href="About">About Us</a></li>
-      <li><a href="Admin">Admin add to cart</a></li>
+      <li><a href="Admin1">Admin add to cart</a></li>
     </ul>
   </div>
   </div>

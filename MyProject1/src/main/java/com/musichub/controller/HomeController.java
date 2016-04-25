@@ -6,11 +6,13 @@ import java.io.FileOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.musichub.dao.ProdService;
 import com.musichub.dao.UserService;
 import com.musichub.model.Product3;
 import com.musichub.model.ProductInfo;
 import com.musichub.model.User3;
+import com.musichub.validator.ProductValidation;
 
 //import com.musichub.dao.UserService;
 //import com.musichub.model.User2;
@@ -32,6 +36,10 @@ import com.musichub.model.User3;
 public class HomeController {
 	@Autowired
 private UserService us;
+	@Autowired
+private ProductValidation prodvalidator;
+	@Autowired
+	private ProdService ps;
 	public HomeController(UserService us) {
 		// TODO Auto-generated constructor stub
 		this.us=us;
@@ -39,6 +47,7 @@ private UserService us;
 	
 public HomeController() {
 		//super();
+//	this.prodvalidator=prodvalidator;
 	}
 
 @RequestMapping("/")
@@ -56,8 +65,9 @@ return "index";
 
 @RequestMapping("/login")
 public String login(@RequestParam (value="error", required = false) String error,
-                    @RequestParam (value="logout", required = false) String logout, Model model
+                    @RequestParam (value="logout", required = false) String logout, Model model,HttpServletRequest req
                     ) {
+	
 System.out.println("in login");
     if(error != null) {
         model.addAttribute("error", "Invalid username and password!");
@@ -138,26 +148,13 @@ public String m11()
 @RequestMapping("/content1")
 public @ResponseBody String disp(ModelMap model)  
 {
-//ProductDao ud=new ProductDao();
-	//ud.setData();
-	//ArrayList<Product>li=ud.getData();
 
-	//ModelAndView mv=new ModelAndView("content");
-	//mv.addObject("listUsers",li);
-	//return mv;
-//	arg0.setAttribute("ss",mv);
-//	return ;
-	//ProductDao ud=new ProductDao();
-//	ud.setData();
-	//ArrayList<Product>li=ud.getData();
-//	List<Product>products=ps.getAllProducts();
-java.util.List<Product3> products=us.getAllProducts();
+
+	java.util.List<ProductInfo> products=ps.selectAll();
 	 Gson gson = new Gson();
 	 String json=gson.toJson(products);
-	// ud.setData();
- // json = gson.toJson(ud.getData());
-return json;
 
+return json;	
 }
 @ModelAttribute("product")
 public ProductInfo create1()
@@ -166,20 +163,21 @@ System.out.println("inside modelattribute");
 return new ProductInfo();
 }
 
-@RequestMapping("/Admin")
+@RequestMapping("/Admin1")
 public String AddToCart()
 {
 return "AddProduct";	
 }
-
-
 @RequestMapping(value="/AddProduct",method=RequestMethod.POST)
 //@RequestMapping(value="/multipleSave", method=RequestMethod.POST )
-public @ResponseBody String addcart(@ModelAttribute("product") ProductInfo pinfo)
+public String addcart(@ModelAttribute("product")@Valid ProductInfo pinfo,BindingResult result)
 {
 	System.out.println("in add");
 	MultipartFile file=pinfo.getPfile();
 	String fileName="";
+	prodvalidator.validate(pinfo, result);
+	if(result.hasErrors())
+	{
 	if(!file.isEmpty())
 	{
 		try
@@ -200,9 +198,50 @@ public @ResponseBody String addcart(@ModelAttribute("product") ProductInfo pinfo
 	}
 	else
 	{
-		return "file empty";
+		return "fileempty";
 		
 	}
+		//System.out.println("in valid"+result);
+	
+		return "AddProduct";
+	}
+	ps.prodSave(pinfo);
 return "Success";
-}}
+}
+@RequestMapping("Success")
+public @ResponseBody String Success(ModelMap model)
+{
+	java.util.List<ProductInfo> products=ps.selectAll();
+	 Gson gson = new Gson();
+	 String json=gson.toJson(products);
+
+return json;	
+}
+@RequestMapping("AllProduct")
+public String AllProduct()
+{
+	return "Success";
+}
+
+@RequestMapping("Edit")
+public ModelAndView Edit(ProductInfo pinfo,HttpServletRequest req,HttpServletResponse res)
+{
+	String name=req.getParameter("id");
+	ps.prodUpdate(pinfo);
+	System.out.println("done");
+	ModelAndView mv=new ModelAndView("done");
+	return mv;
+}
+
+@RequestMapping("Delete")
+public String Delete(ProductInfo pinfo)
+{
+	//ps.prodUpdate(pinfo);
+	System.out.println("in delete");
+	ps.prodDelete(pinfo);
+	return "deleted";
+}
+}
+
+
 

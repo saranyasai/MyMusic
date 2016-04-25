@@ -14,6 +14,7 @@
         <beans:property name="password" value="" />
     </beans:bean>
 <context:component-scan base-package="com.musichub"/>
+<beans:bean id="prodvalidator" class="com.musichub.validator.ProductValidation"/>
  <beans:bean id="sessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource" />               
         <beans:property name="hibernateProperties">
@@ -32,7 +33,7 @@
     </beans:bean>
    <security:http auto-config="true">
       <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
-       <security:form-login
+   <security:form-login
            login-page="/login"
            default-target-url="/"
            login-processing-url="/j_spring_security_check"
