@@ -3,8 +3,10 @@ package com.musichub.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.musichub.model.Product3;
@@ -29,8 +31,11 @@ List<ProductInfo>p;
 	@Override
 	public List<ProductInfo> selectAll() {
 		// TODO Auto-generated method stub
-		Session s=sessionFactory.getCurrentSession();
+		Session s=sessionFactory.openSession();
 		org.hibernate.Query q=s.createQuery("from ProductInfo");
+		//Criteria c=s.createCriteria(Restrictions.eq("pname", pname));
+	//	Criteria c=s.createCriteria(ProductInfo.class);
+		//if()
 		p=q.list();
 		
 		return p;

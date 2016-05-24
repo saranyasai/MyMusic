@@ -3,6 +3,8 @@ package com.musichub.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.musichub.dao.ProdImpl;
 import com.musichub.dao.ProdService;
 import com.musichub.dao.UserService;
 import com.musichub.model.Product3;
@@ -40,6 +43,8 @@ private UserService us;
 private ProductValidation prodvalidator;
 	@Autowired
 	private ProdService ps;
+	@Autowired
+	private ProdImpl pi;
 	public HomeController(UserService us) {
 		// TODO Auto-generated constructor stub
 		this.us=us;
@@ -138,24 +143,54 @@ public ModelAndView m5(@RequestParam(value = "name", required = false, defaultVa
 public String adminPage() {
     return "admin";
 }
+String data;
 @RequestMapping("/content")
-public String m11()
+public String m11(HttpServletRequest req)
 {
+	String data=req.getParameter("dd");
+	System.out.println(data);
+
 	return "content";
 }
 
 
 @RequestMapping("/content1")
-public @ResponseBody String disp(ModelMap model)  
+public @ResponseBody String disp(ModelMap model,HttpServletRequest req)  
 {
-
+	
 
 	java.util.List<ProductInfo> products=ps.selectAll();
 	 Gson gson = new Gson();
 	 String json=gson.toJson(products);
 
-return json;	
+return json;
+	/*ModelAndView mv = null;
+	String data=req.getParameter("id");
+	//ProdImpl piu=new ProdImpl();
+	//piu.selectAll();
+	List<ProductInfo>li=pi.selectAll();
+for(ProductInfo li1:li)
+	{
+	//	li1.getId();
+	if(li1.getPname().equals(data))
+	{
+	mv=new ModelAndView("moreinfo");
+		li1.getPdesc();
+		li1.getPprice();
+		li1.getPmanu();
+		mv.addObject("ss",li1);
+	//request.setAttribute("ss",li);
+		//return mv1;
+	}
+	
+			
+	//return mv;
 }
+	//return new ModelAndView("Check");
+return mv;
+*/
+}
+
 @ModelAttribute("product")
 public ProductInfo create1()
 {
@@ -238,9 +273,56 @@ public String Delete(ProductInfo pinfo)
 {
 	//ps.prodUpdate(pinfo);
 	System.out.println("in delete");
+	try
+	{
 	ps.prodDelete(pinfo);
+	}
+	catch(Exception e)
+	{
+		System.out.println("Error"+e);
+		
+	}
+	
+	
 	return "deleted";
 }
+
+@RequestMapping("/moreinfo")
+public ModelAndView addtocart(HttpServletRequest request,HttpServletResponse response)
+{
+	ModelAndView mv = null;
+	String data=request.getParameter("id");
+	//ProdImpl piu=new ProdImpl();
+	//piu.selectAll();
+	List<ProductInfo>li=pi.selectAll();
+for(ProductInfo li1:li)
+	{
+	//	li1.getId();
+	if(li1.getPname().equals(data))
+	{
+	mv=new ModelAndView("moreinfo");
+		li1.getPdesc();
+		li1.getPprice();
+		li1.getPmanu();
+		mv.addObject("ss",li1);
+	//request.setAttribute("ss",li);
+		//return mv1;
+	}
+	
+			
+	//return mv;
+}
+	//return new ModelAndView("Check");
+return mv;
+
+}
+
+@RequestMapping("/About")
+public String About()
+{
+return "Aboutus";	
+}
+
 }
 
 

@@ -31,7 +31,7 @@ left: 200%;
 }
 </style>
 
-<script>
+ <script>
 
     var app = angular.module('myApp', []);
     
@@ -58,7 +58,7 @@ left: 200%;
         };
     };
 </script>
-
+ 
 </head>
 
 <body id="bg">
@@ -85,7 +85,7 @@ left: 200%;
 <%String img1=request.getParameter("dd") ;
 if(img1.equals("img1"))
 {
-	out.println(""+img1);
+	//out.println(""+img1);
 %>
 <div>
         <div  ng-init="getPersonDataFromServer(); ">

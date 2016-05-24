@@ -117,7 +117,7 @@ if(img1.equals("img1"))
 			<td style="font-size: 200%;">{{c.pprice}}</td>
 			<th style="font-size: 200%;">{{c.pdesc}}</th>
 			<td style="font-size:200%;">{{c.pmanu}}</td>
-			<td style="font-size: 200%;"><a href="moreinfo?id={{c.id}}">
+			<td style="font-size: 200%;"><a href="moreinfo?id={{c.pname}}">
 			
    	   <span class="glyphicon glyphicon-info-sign"></span>
    <td style="font-size:200%;"><a href="Edit?id={{c.pname}}" class="btn btn-info" role="button">Edit</a></td>

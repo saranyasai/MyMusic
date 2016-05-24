@@ -27,6 +27,10 @@ public class UserService {
 	{
 		return up.getAllProducts();
 	}
+	public com.musichub.controller.User3 getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 }

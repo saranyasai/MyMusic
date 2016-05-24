@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<center><h2>&copy;Musichub-2016</h2></center>
 </body>
 </html>
