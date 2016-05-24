@@ -3,6 +3,7 @@ package com.project2.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,5 +24,15 @@ public class HomeController {
 	      
 	        return "login";
 	    }
+	 @RequestMapping(value = "/user", method = RequestMethod.GET)
+		public ModelAndView adminPage() {
 
+			ModelAndView model = new ModelAndView();
+			//model.addObject("title", "Spring Security Custom Login Form");
+			//model.addObject("message", "This is protected page!");
+			model.setViewName("success");
+
+			return model;
+
+		}
 }

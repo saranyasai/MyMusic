@@ -39,10 +39,10 @@
    <security:http auto-config="true">
         <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
         <security:intercept-url pattern="/user/**" access="ROLE_USER" />
-        <security:intercept-url pattern="/project2/**" access="ROLE_USER,ROLE_ADMIN" />
+        <security:intercept-url pattern="/success/**" access="ROLE_USER,ROLE_ADMIN" />
         <security:form-login
             login-page="/login"
-            default-target-url="/"
+            default-target-url="/user"
             authentication-failure-url="/login?error"
             username-parameter="username"
             password-parameter="password" />
